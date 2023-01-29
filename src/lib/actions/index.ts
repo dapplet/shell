@@ -100,9 +100,11 @@ export async function getPilets(client: string) {
   const pkgs = (await getPackages(client, provider, chainId)).map((pkg) => {
     return pkg.addr;
   });
+  console.log('pkgs', pkgs);
 
   // get metadata of packages
   const metadata = await viewerfacet.metadataOf(pkgs);
+  console.log('metadata', metadata);
 
   // fetch pilets
   const pilets = await Promise.all(
@@ -132,17 +134,8 @@ export async function getPilets(client: string) {
 export function parsePackages(evts: any[]) {
   //sort by block
   return (
-    evts
-      .sort((a, b) => a.block - b.block)
-      //get the last event for each client/pkg
-      .filter(
-        (v, i, a) =>
-          a.findLastIndex((v2) =>
-            ['client', 'pkg'].every((k) => v2[k] === v[k])
-          ) === i
-      )
-      //filter out install = false (this means uninstall event)
-      .filter((e) => e.install === true)
+    // if uninstall event comes after install event and the package is the same, remove the package from the list
+    evts.filter((e) => e.install === true || e.uninstall === false)
   );
 }
 
@@ -163,6 +156,8 @@ export async function getPackages(
     deployment('Diamond', chainId).block,
     'latest'
   );
+
+  console.log('events', events);
 
   // check events for installs
   return parsePackages(

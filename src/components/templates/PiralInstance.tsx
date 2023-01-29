@@ -83,6 +83,12 @@ export const PiralInstance = memo(({ diamond }: InstanceProps) => {
           target: 'memory',
           value: diamond,
         },
+        'diamond-address': {
+          expires: -1,
+          owner: 'root',
+          target: 'memory',
+          value: diamond,
+        },
       },
     },
     // actions: {},
@@ -90,15 +96,16 @@ export const PiralInstance = memo(({ diamond }: InstanceProps) => {
     async: true,
     async requestPilets() {
       const pilets = await getPilets(diamond);
-      // console.log('pilets', pilets);
+      console.log('pilets', pilets);
       return Promise.resolve(pilets);
     },
-    shareDependencies(dependencies) {
+    /*     shareDependencies(dependencies) {
       return {
         ...dependencies,
-        'dapp-shell': require('@usedapp/core'),
+        '@usedapp/core': require('@usedapp/core'),
+        '@shoelace-style/shoelace': require('@shoelace-style/shoelace'),
       };
-    },
+    }, */
   });
 
   instance.root.registerTile(
