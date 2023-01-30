@@ -6,4 +6,3 @@
 
 1. `yarn install`
 2. `yarn start`
-   ... now you should have
