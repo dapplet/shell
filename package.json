@@ -1,7 +1,7 @@
 {
   "name": "dapp-shell",
   "author": "Dapplet",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "AppShell for a dapp on the Dapplet network",
   "keywords": [
     "piral"
@@ -17,6 +17,7 @@
     "imports": {
       "ethers": "ethers",
       "@usedapp/core": "@usedapp/core",
+      "@shoelace-style/shoelace": "@shoelace-style/shoelace",
       "@shoelace-style/shoelace/dist/react": "@shoelace-style/shoelace/dist/react"
     },
     "inherit": [
