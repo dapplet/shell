@@ -5,5 +5,4 @@
 > you should have gone through [part 1](https://github.com/dapplet/contracts) and [part 2](https://github.com/dapplet/interface) already.
 
 1. `yarn install`
-2. change .env.example to .env
-3. `yarn start`
+2. `yarn start`
