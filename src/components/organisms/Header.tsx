@@ -1,4 +1,4 @@
-import { SlIconButton } from '@shoelace-style/shoelace/dist/react';
+import { SlIconButton } from '../../design/shoelace';
 import Wallet from '../molecules/Wallet';
 function Header() {
   return (

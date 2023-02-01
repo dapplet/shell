@@ -1,6 +1,6 @@
 import { useEthers } from '@usedapp/core';
 
-import { SlButton } from '@shoelace-style/shoelace/dist/react';
+import { SlButton } from '../../design/shoelace';
 
 function Wallet() {
   const { account, deactivate, activateBrowserWallet } = useEthers();

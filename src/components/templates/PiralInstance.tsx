@@ -1,4 +1,3 @@
-import { SlCard } from '@shoelace-style/shoelace/dist/react';
 import {
   ComponentsState,
   createInstance,
@@ -10,6 +9,7 @@ import { createDashboardApi, Dashboard } from 'piral-dashboard';
 import { createNotificationsApi, Notifications } from 'piral-notifications';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
+import { SlCard } from '../../design/shoelace';
 import { getPilets } from '../../lib/actions';
 import Header from '../organisms/Header';
 
@@ -99,13 +99,6 @@ export const PiralInstance = memo(({ diamond }: InstanceProps) => {
       console.log('pilets', pilets);
       return Promise.resolve(pilets);
     },
-    /*     shareDependencies(dependencies) {
-      return {
-        ...dependencies,
-        '@usedapp/core': require('@usedapp/core'),
-        '@shoelace-style/shoelace': require('@shoelace-style/shoelace'),
-      };
-    }, */
   });
 
   instance.root.registerTile(
