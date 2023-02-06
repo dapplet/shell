@@ -13,7 +13,11 @@ registerIconLibrary('default', {
     `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.0.0/icons/${name}.svg`,
 });
 
-setBasePath('/');
+setBasePath(
+  'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/'
+);
+
+//TODO: optimize with CDN
 
 export * from '@shoelace-style/shoelace/dist/components/alert/alert';
 export * from '@shoelace-style/shoelace/dist/components/animated-image/animated-image';
