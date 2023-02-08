@@ -1,6 +1,10 @@
-import { SlIconButton } from '../../design/shoelace';
+import { SlIcon, SlIconButton, SlSwitch } from '../../design/shoelace';
+import { useTheme } from '../../lib/stores';
 import Wallet from '../molecules/Wallet';
 function Header() {
+  const toggleTheme = useTheme((state) => state.toggle);
+  const theme = useTheme((state) => state.theme);
+
   return (
     <>
       <div id="header">
@@ -10,7 +14,15 @@ function Header() {
             <SlIconButton name="box-arrow-up-right" />
           </a>
         </div>
-        <Wallet />
+        <div className="flex items-center gap-2">
+          <SlSwitch
+            className="menu-switch"
+            checked={theme === 'dark'}
+            onSlChange={toggleTheme}
+          />
+          <SlIcon name="moon" />
+          <Wallet />
+        </div>
       </div>
     </>
   );

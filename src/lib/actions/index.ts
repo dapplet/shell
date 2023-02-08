@@ -97,9 +97,7 @@ export async function getPilets(client: string) {
   );
 
   // get installed packages from events
-  const pkgs = (await getPackages(client, provider, chainId)).map((pkg) => {
-    return pkg.addr;
-  });
+  const pkgs = await getPackages(client, provider, chainId);
   console.log('pkgs', pkgs);
 
   // get metadata of packages
@@ -131,12 +129,19 @@ export async function getPilets(client: string) {
   return pilets.length === 0 ? [] : pilets;
 }
 
-export function parsePackages(evts: any[]) {
-  //sort by block
-  return (
-    // if uninstall event comes after install event and the package is the same, remove the package from the list
-    evts.filter((e) => e.install === true || e.uninstall === false)
-  );
+export function parseInstalls(logs: any[], schema: 'args' | 'data') {
+  return logs
+    .filter((upgrade) => upgrade[schema]?.install === true)
+    .filter((upgrade) => {
+      const uninstalls = logs.filter(
+        (upgrade) => upgrade[schema]?.install === false
+      );
+      return uninstalls.every((uninstall) => {
+        console.log('uninstall', uninstall);
+        return uninstall.blockNumber < upgrade.blockNumber;
+      });
+    })
+    .map((upgrade) => upgrade[schema]?.pkg);
 }
 
 export async function getPackages(
@@ -160,15 +165,7 @@ export async function getPackages(
   console.log('events', events);
 
   // check events for installs
-  return parsePackages(
-    events.map((evt) => {
-      return {
-        addr: evt.args?.pkg,
-        block: evt.blockNumber,
-        install: evt.args?.install,
-      };
-    })
-  );
+  return parseInstalls(events, 'args');
 }
 
 export async function getClient(
