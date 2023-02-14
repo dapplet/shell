@@ -12,20 +12,20 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
+} from "ethers";
 import type {
   FunctionFragment,
   Result,
   EventFragment,
-} from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
+} from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from './common';
+} from "./common";
 
 export declare namespace IDiamondWritableInternal {
   export type FacetCutStruct = {
@@ -45,7 +45,7 @@ export declare namespace IPKG {
   export type CUTStruct = {
     cuts: IDiamondWritableInternal.FacetCutStruct[];
     target: PromiseOrValue<string>;
-    data: PromiseOrValue<BytesLike>;
+    selector: PromiseOrValue<BytesLike>;
   };
 
   export type CUTStructOutput = [
@@ -55,65 +55,65 @@ export declare namespace IPKG {
   ] & {
     cuts: IDiamondWritableInternal.FacetCutStructOutput[];
     target: string;
-    data: string;
+    selector: string;
   };
 }
 
 export interface ConnectorFacetInterface extends utils.Interface {
   functions: {
-    'createPkg(((address,uint8,bytes4[])[],address,bytes),string)': FunctionFragment;
-    'installPkg(address,address)': FunctionFragment;
-    'model()': FunctionFragment;
-    'uninstallPkg(address,address)': FunctionFragment;
+    "createPkg(((address,uint8,bytes4[])[],address,bytes4),string)": FunctionFragment;
+    "installPkg(address,address)": FunctionFragment;
+    "model()": FunctionFragment;
+    "uninstallPkg(address,address)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | 'createPkg'
-      | 'installPkg'
-      | 'model'
-      | 'uninstallPkg'
+      | "createPkg"
+      | "installPkg"
+      | "model"
+      | "uninstallPkg"
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'createPkg',
+    functionFragment: "createPkg",
     values: [IPKG.CUTStruct, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'installPkg',
+    functionFragment: "installPkg",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(functionFragment: 'model', values?: undefined): string;
+  encodeFunctionData(functionFragment: "model", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: 'uninstallPkg',
+    functionFragment: "uninstallPkg",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
 
-  decodeFunctionResult(functionFragment: 'createPkg', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'installPkg', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'model', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "createPkg", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "installPkg", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "model", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: 'uninstallPkg',
+    functionFragment: "uninstallPkg",
     data: BytesLike
   ): Result;
 
   events: {
-    'Approval(address,address,uint256)': EventFragment;
-    'PackageCreated(address,address)': EventFragment;
-    'RoleAdminChanged(bytes32,bytes32,bytes32)': EventFragment;
-    'RoleGranted(bytes32,address,address)': EventFragment;
-    'RoleRevoked(bytes32,address,address)': EventFragment;
-    'Transfer(address,address,uint256)': EventFragment;
-    'Upgrade(address,address,bool)': EventFragment;
+    "Approval(address,address,uint256)": EventFragment;
+    "PackageCreated(address,address)": EventFragment;
+    "RoleAdminChanged(bytes32,bytes32,bytes32)": EventFragment;
+    "RoleGranted(bytes32,address,address)": EventFragment;
+    "RoleRevoked(bytes32,address,address)": EventFragment;
+    "Transfer(address,address,uint256)": EventFragment;
+    "Upgrade(address,address,bool)": EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: 'Approval'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'PackageCreated'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'RoleAdminChanged'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'RoleGranted'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'RoleRevoked'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'Transfer'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'Upgrade'): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "PackageCreated"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleAdminChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleGranted"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleRevoked"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Upgrade"): EventFragment;
 }
 
 export interface ApprovalEventObject {
@@ -291,7 +291,7 @@ export interface ConnectorFacet extends BaseContract {
   };
 
   filters: {
-    'Approval(address,address,uint256)'(
+    "Approval(address,address,uint256)"(
       owner?: PromiseOrValue<string> | null,
       spender?: PromiseOrValue<string> | null,
       value?: null
@@ -302,7 +302,7 @@ export interface ConnectorFacet extends BaseContract {
       value?: null
     ): ApprovalEventFilter;
 
-    'PackageCreated(address,address)'(
+    "PackageCreated(address,address)"(
       pkg?: PromiseOrValue<string> | null,
       creator?: PromiseOrValue<string> | null
     ): PackageCreatedEventFilter;
@@ -311,7 +311,7 @@ export interface ConnectorFacet extends BaseContract {
       creator?: PromiseOrValue<string> | null
     ): PackageCreatedEventFilter;
 
-    'RoleAdminChanged(bytes32,bytes32,bytes32)'(
+    "RoleAdminChanged(bytes32,bytes32,bytes32)"(
       role?: PromiseOrValue<BytesLike> | null,
       previousAdminRole?: PromiseOrValue<BytesLike> | null,
       newAdminRole?: PromiseOrValue<BytesLike> | null
@@ -322,7 +322,7 @@ export interface ConnectorFacet extends BaseContract {
       newAdminRole?: PromiseOrValue<BytesLike> | null
     ): RoleAdminChangedEventFilter;
 
-    'RoleGranted(bytes32,address,address)'(
+    "RoleGranted(bytes32,address,address)"(
       role?: PromiseOrValue<BytesLike> | null,
       account?: PromiseOrValue<string> | null,
       sender?: PromiseOrValue<string> | null
@@ -333,7 +333,7 @@ export interface ConnectorFacet extends BaseContract {
       sender?: PromiseOrValue<string> | null
     ): RoleGrantedEventFilter;
 
-    'RoleRevoked(bytes32,address,address)'(
+    "RoleRevoked(bytes32,address,address)"(
       role?: PromiseOrValue<BytesLike> | null,
       account?: PromiseOrValue<string> | null,
       sender?: PromiseOrValue<string> | null
@@ -344,7 +344,7 @@ export interface ConnectorFacet extends BaseContract {
       sender?: PromiseOrValue<string> | null
     ): RoleRevokedEventFilter;
 
-    'Transfer(address,address,uint256)'(
+    "Transfer(address,address,uint256)"(
       from?: PromiseOrValue<string> | null,
       to?: PromiseOrValue<string> | null,
       value?: null
@@ -355,7 +355,7 @@ export interface ConnectorFacet extends BaseContract {
       value?: null
     ): TransferEventFilter;
 
-    'Upgrade(address,address,bool)'(
+    "Upgrade(address,address,bool)"(
       pkg?: PromiseOrValue<string> | null,
       client?: PromiseOrValue<string> | null,
       install?: null

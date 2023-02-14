@@ -1,5 +1,5 @@
 import { useNotifications } from '@usedapp/core';
-import { ethers } from 'ethers';
+import { isAddress } from 'ethers/lib/utils';
 import PiralInstance from './components/templates/PiralInstance';
 import { useClient } from './lib/hooks';
 import { useTheme } from './lib/stores';
@@ -17,7 +17,7 @@ export const App: React.FC = () => {
   return (
     <main id="app-layout" className={theme}>
       <div id="main">
-        {ethers.utils.isAddress(client!) && <PiralInstance diamond={client!} />}
+        {client && isAddress(client) && <PiralInstance diamond={client} />}
       </div>
     </main>
   );

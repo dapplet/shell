@@ -1,12 +1,12 @@
 import {
   ComponentsState,
-  createInstance,
   ErrorComponentsState,
   Piral,
   SwitchErrorInfo,
+  createInstance,
 } from 'piral-core';
-import { createDashboardApi, Dashboard } from 'piral-dashboard';
-import { createNotificationsApi, Notifications } from 'piral-notifications';
+import { Dashboard, createDashboardApi } from 'piral-dashboard';
+import { Notifications, createNotificationsApi } from 'piral-notifications';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { SlAlert, SlCard, SlIcon } from '../../design/shoelace';
@@ -113,12 +113,6 @@ export const PiralInstance = memo(({ diamond }: InstanceProps) => {
         '/': Dashboard,
       },
       data: {
-        'proxy-address': {
-          expires: -1,
-          owner: 'root',
-          target: 'memory',
-          value: diamond,
-        },
         'diamond-address': {
           expires: -1,
           owner: 'root',
@@ -136,57 +130,6 @@ export const PiralInstance = memo(({ diamond }: InstanceProps) => {
       return Promise.resolve(pilets);
     },
   });
-
-  instance.root.registerTile(
-    () => <a href={`https://dapplet.app/dapps/${diamond}`}>Stats</a>,
-    {
-      initialColumns: 1,
-      initialRows: 1,
-    }
-  );
-
-  instance.root.registerTile(
-    () => <a href={`https://dapplet.app/dapps/${diamond}`}>Stats</a>,
-    {
-      initialColumns: 2,
-      initialRows: 1,
-    }
-  );
-  instance.root.registerTile(
-    () => <a href={`https://dapplet.app/dapps/${diamond}`}>Stats</a>,
-    {
-      initialColumns: 2,
-      initialRows: 2,
-    }
-  );
-  instance.root.registerTile(
-    () => <a href={`https://dapplet.app/dapps/${diamond}`}>Stats</a>,
-    {
-      initialColumns: 2,
-      initialRows: 2,
-    }
-  );
-  instance.root.registerTile(
-    () => <a href={`https://dapplet.app/dapps/${diamond}`}>Stats</a>,
-    {
-      initialColumns: 3,
-      initialRows: 3,
-    }
-  );
-  instance.root.registerTile(
-    () => <a href={`https://dapplet.app/dapps/${diamond}`}>Stats</a>,
-    {
-      initialColumns: 2,
-      initialRows: 2,
-    }
-  );
-  instance.root.registerTile(
-    () => <a href={`https://dapplet.app/dapps/${diamond}`}>Stats</a>,
-    {
-      initialColumns: 3,
-      initialRows: 3,
-    }
-  );
 
   return <Piral instance={instance} />;
 });

@@ -260,9 +260,9 @@
             "type": "address"
           },
           {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
           }
         ],
         "internalType": "struct IPKG.CUT",

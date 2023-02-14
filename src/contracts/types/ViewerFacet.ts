@@ -9,105 +9,112 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
-import type { FunctionFragment, Result } from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
+} from "ethers";
+import type { FunctionFragment, Result } from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from './common';
+} from "./common";
 
 export interface ViewerFacetInterface extends utils.Interface {
   functions: {
-    'addr(bytes32)': FunctionFragment;
-    'contentHash(bytes32)': FunctionFragment;
-    'metadataOf(address[])': FunctionFragment;
-    'name(bytes32)': FunctionFragment;
-    'node(address)': FunctionFragment;
-    'ownedBy(address)': FunctionFragment;
-    'ownerOf(address)': FunctionFragment;
-    'receivedStakeOf(address)': FunctionFragment;
-    'sentStakeOf(address)': FunctionFragment;
-    'text(bytes32,string)': FunctionFragment;
+    "addr(bytes32)": FunctionFragment;
+    "contentHash(bytes32)": FunctionFragment;
+    "isPkg(address)": FunctionFragment;
+    "metadataOf(address[])": FunctionFragment;
+    "name(bytes32)": FunctionFragment;
+    "node(address)": FunctionFragment;
+    "ownedBy(address)": FunctionFragment;
+    "ownerOf(address)": FunctionFragment;
+    "receivedStakeOf(address)": FunctionFragment;
+    "sentStakeOf(address)": FunctionFragment;
+    "text(bytes32,string)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | 'addr'
-      | 'contentHash'
-      | 'metadataOf'
-      | 'name'
-      | 'node'
-      | 'ownedBy'
-      | 'ownerOf'
-      | 'receivedStakeOf'
-      | 'sentStakeOf'
-      | 'text'
+      | "addr"
+      | "contentHash"
+      | "isPkg"
+      | "metadataOf"
+      | "name"
+      | "node"
+      | "ownedBy"
+      | "ownerOf"
+      | "receivedStakeOf"
+      | "sentStakeOf"
+      | "text"
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'addr',
+    functionFragment: "addr",
     values: [PromiseOrValue<BytesLike>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'contentHash',
+    functionFragment: "contentHash",
     values: [PromiseOrValue<BytesLike>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'metadataOf',
+    functionFragment: "isPkg",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "metadataOf",
     values: [PromiseOrValue<string>[]]
   ): string;
   encodeFunctionData(
-    functionFragment: 'name',
+    functionFragment: "name",
     values: [PromiseOrValue<BytesLike>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'node',
+    functionFragment: "node",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'ownedBy',
+    functionFragment: "ownedBy",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'ownerOf',
+    functionFragment: "ownerOf",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'receivedStakeOf',
+    functionFragment: "receivedStakeOf",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'sentStakeOf',
+    functionFragment: "sentStakeOf",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'text',
+    functionFragment: "text",
     values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
   ): string;
 
-  decodeFunctionResult(functionFragment: 'addr', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "addr", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: 'contentHash',
+    functionFragment: "contentHash",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: 'metadataOf', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'name', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'node', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'ownedBy', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'ownerOf', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "isPkg", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "metadataOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "node", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ownedBy", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: 'receivedStakeOf',
+    functionFragment: "receivedStakeOf",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: 'sentStakeOf',
+    functionFragment: "sentStakeOf",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: 'text', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "text", data: BytesLike): Result;
 
   events: {};
 }
@@ -148,6 +155,11 @@ export interface ViewerFacet extends BaseContract {
       _node: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<[string]>;
+
+    isPkg(
+      pkg: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
 
     metadataOf(
       pkgs: PromiseOrValue<string>[],
@@ -205,6 +217,11 @@ export interface ViewerFacet extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  isPkg(
+    pkg: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
   metadataOf(
     pkgs: PromiseOrValue<string>[],
     overrides?: CallOverrides
@@ -260,6 +277,11 @@ export interface ViewerFacet extends BaseContract {
       _node: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    isPkg(
+      pkg: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
 
     metadataOf(
       pkgs: PromiseOrValue<string>[],
@@ -320,6 +342,11 @@ export interface ViewerFacet extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    isPkg(
+      pkg: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     metadataOf(
       pkgs: PromiseOrValue<string>[],
       overrides?: CallOverrides
@@ -370,6 +397,11 @@ export interface ViewerFacet extends BaseContract {
 
     contentHash(
       _node: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    isPkg(
+      pkg: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
