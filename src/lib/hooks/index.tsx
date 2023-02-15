@@ -6,8 +6,11 @@ import { getWindowDimensions } from '../actions';
 
 export function useClient() {
   const diamond = useDeployments('Diamond');
+  console.log('diamond', diamond.address);
   const name = window.location.hostname.split('.')[0];
+  console.log('name', name);
   const node = namehash(`${name}.${rootName}`);
+  console.log('node', node);
   const addr = useViewerFacet.addr(diamond?.address, [node])?.value?.[0];
   console.log('addr', addr);
   return addr;

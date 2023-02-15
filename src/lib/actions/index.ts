@@ -119,6 +119,7 @@ export async function getClient(
   provider: ethers.providers.JsonRpcProvider
 ) {
   const name = window.location.hostname.split('.')[0];
+  console.log('name', name);
   const node = ethers.utils.namehash(`${name}.${rootName}`);
   const Diamond = deployment('Diamond', chainId);
   const ViewerFacet = deployment('ViewerFacet', chainId);
