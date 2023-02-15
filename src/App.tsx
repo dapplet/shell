@@ -9,15 +9,17 @@ export const App: React.FC = () => {
   const themeSuffix = useTheme((state) => state.theme); //dark or light
   const theme = themePrefix + themeSuffix;
 
+  const { library } = useEthers();
   const client = useClient();
-
-  const { account } = useEthers();
-  console.log('account', account);
 
   return (
     <main id="app-layout" className={theme}>
       <div id="main">
-        {client && isAddress(client) && <PiralInstance diamond={client} />}
+        {library && client && isAddress(client) ? (
+          <PiralInstance provider={library} diamond={client} />
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </main>
   );

@@ -1,3 +1,7 @@
+import type {
+  FallbackProvider,
+  JsonRpcProvider,
+} from '@ethersproject/providers';
 import { ethers } from 'ethers';
 import { deployment, rootName } from '../../contracts';
 import {
@@ -27,8 +31,10 @@ export async function fetchFirstAvailable(cid: string, file?: string) {
   return { res: null, schema: null };
 }
 
-export async function getPilets(client: string) {
-  const provider = new ethers.providers.JsonRpcProvider();
+export async function getPilets(
+  client: string,
+  provider: JsonRpcProvider | FallbackProvider
+) {
   const chainId = await provider.getNetwork().then((res) => {
     return res.chainId;
   });
@@ -95,7 +101,7 @@ export function parseInstalls(logs: any[], schema: 'args' | 'data') {
 
 export async function getPackages(
   client: string,
-  provider: ethers.providers.JsonRpcProvider,
+  provider: JsonRpcProvider | FallbackProvider,
   chainId: number
 ) {
   const connectorfacet = new ethers.Contract(

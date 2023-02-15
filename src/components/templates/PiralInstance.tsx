@@ -1,3 +1,7 @@
+import type {
+  FallbackProvider,
+  JsonRpcProvider,
+} from '@ethersproject/providers';
 import {
   ComponentsState,
   ErrorComponentsState,
@@ -98,10 +102,11 @@ export const layout: Partial<ComponentsState> = {
 };
 
 export interface InstanceProps {
+  provider: JsonRpcProvider | FallbackProvider;
   diamond: string;
 }
 
-export const PiralInstance = memo(({ diamond }: InstanceProps) => {
+export const PiralInstance = memo(({ provider, diamond }: InstanceProps) => {
   // register base menu item
 
   const instance = createInstance({
@@ -125,7 +130,7 @@ export const PiralInstance = memo(({ diamond }: InstanceProps) => {
     plugins: [createDashboardApi(), createNotificationsApi()],
     async: true,
     async requestPilets() {
-      const pilets = await getPilets(diamond);
+      const pilets = await getPilets(diamond, provider);
       console.log('pilets', pilets);
       return Promise.resolve(pilets);
     },
