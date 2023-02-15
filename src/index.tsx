@@ -11,7 +11,7 @@ export const config: Config = {
   readOnlyUrls: {
     [Mainnet.chainId]: process.env.REACT_APP_INFURA_ETH_MAINNET_URL!,
     [Goerli.chainId]: process.env.REACT_APP_INFURA_ETH_GOERLI_URL!,
-    [Hardhat.chainId]: 'http://localhost:8545',
+    // [Hardhat.chainId]: 'http://localhost:8545',
   },
   multicallAddresses: {
     [Mainnet.chainId]: deployment('Multicall2', Mainnet.chainId)?.address,
