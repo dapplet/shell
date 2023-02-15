@@ -1,3 +1,4 @@
+import { useEthers } from '@usedapp/core';
 import { isAddress } from 'ethers/lib/utils';
 import PiralInstance from './components/templates/PiralInstance';
 import { useClient } from './lib/hooks';
@@ -9,6 +10,9 @@ export const App: React.FC = () => {
   const theme = themePrefix + themeSuffix;
 
   const client = useClient();
+
+  const { account } = useEthers();
+  console.log('account', account);
 
   return (
     <main id="app-layout" className={theme}>

@@ -33,6 +33,8 @@ export async function getPilets(client: string) {
     return res.chainId;
   });
 
+  console.log('chainId', chainId);
+
   // declare contract
   const Diamond = deployment('Diamond', chainId);
   const viewerfacet = new ethers.Contract(
@@ -40,6 +42,8 @@ export async function getPilets(client: string) {
     ViewerFacet__factory.abi,
     provider
   );
+
+  console.log('viewerfacet', viewerfacet);
 
   // get installed packages from events
   const pkgs = await getPackages(client, provider, chainId);
@@ -114,10 +118,13 @@ export async function getPackages(
   return parseInstalls(events, 'args');
 }
 
-export async function getClient(
-  chainId: number,
-  provider: ethers.providers.JsonRpcProvider
-) {
+export async function getClient() {
+  const provider = new ethers.providers.JsonRpcProvider(
+    (window as any).ethereum
+  );
+  const chainId = await provider.getNetwork().then((res) => {
+    return res.chainId;
+  });
   const name = window.location.hostname.split('.')[0];
   console.log('name', name);
   const node = ethers.utils.namehash(`${name}.${rootName}`);

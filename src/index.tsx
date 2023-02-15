@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import { deployment } from './contracts';
 
-const network = Goerli;
+const network = Hardhat || Goerli || Mainnet;
 
 export const config: Config = {
   readOnlyChainId: network.chainId,
