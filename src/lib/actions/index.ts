@@ -2,13 +2,15 @@ import type {
   FallbackProvider,
   JsonRpcProvider,
 } from '@ethersproject/providers';
+import { NodeUrls } from '@usedapp/core';
 import { ethers } from 'ethers';
-import { deployment, rootName } from '../../contracts';
+import { getAddress } from 'ethers/lib/utils';
+import { deployment } from '../../contracts';
 import {
   ConnectorFacet__factory,
   ViewerFacet__factory,
 } from '../../contracts/types';
-import { gateways } from '../constants';
+import { config, gateways } from '../constants';
 
 export async function fetchFirstAvailable(cid: string, file?: string) {
   for (const schema of gateways) {
@@ -31,13 +33,20 @@ export async function fetchFirstAvailable(cid: string, file?: string) {
   return { res: null, schema: null };
 }
 
-export async function getPilets(
-  client: string,
-  provider: JsonRpcProvider | FallbackProvider
-) {
+export async function getPilets() {
+  // const provider = new ethers.providers.JsonRpcProvider(
+  //   (config.readOnlyUrls)[`${config.readOnlyChainId as number}`]
+
+  const url = (config.readOnlyUrls as NodeUrls)[
+    config.readOnlyChainId as keyof NodeUrls
+  ] as string;
+  console.log('url', url);
+
+  const provider = new ethers.providers.JsonRpcProvider(url);
   const chainId = await provider.getNetwork().then((res) => {
     return res.chainId;
   });
+  const client = await getDiamond();
 
   console.log('chainId', chainId);
 
@@ -124,24 +133,11 @@ export async function getPackages(
   return parseInstalls(events, 'args');
 }
 
-export async function getClient() {
-  const provider = new ethers.providers.JsonRpcProvider(
-    (window as any).ethereum
-  );
-  const chainId = await provider.getNetwork().then((res) => {
-    return res.chainId;
-  });
-  const name = window.location.hostname.split('.')[0];
-  console.log('name', name);
-  const node = ethers.utils.namehash(`${name}.${rootName}`);
-  const Diamond = deployment('Diamond', chainId);
-  const ViewerFacet = deployment('ViewerFacet', chainId);
-  const viewerfacet = new ethers.Contract(
-    Diamond.address,
-    ViewerFacet.abi,
-    provider
-  );
-  return await viewerfacet.addr(node);
+export function getDiamond() {
+  const subdomain = window.location.hostname.split('.')[0];
+  const addr = getAddress(subdomain);
+  console.log('addr', addr);
+  return addr;
 }
 
 export function getWindowDimensions() {

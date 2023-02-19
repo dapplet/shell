@@ -20,44 +20,6 @@ const _abi = [
   {
     inputs: [
       {
-        internalType: "bytes32",
-        name: "_node",
-        type: "bytes32",
-      },
-    ],
-    name: "addr",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "_node",
-        type: "bytes32",
-      },
-    ],
-    name: "contentHash",
-    outputs: [
-      {
-        internalType: "bytes",
-        name: "",
-        type: "bytes",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
         internalType: "address",
         name: "pkg",
         type: "address",
@@ -96,36 +58,17 @@ const _abi = [
   {
     inputs: [
       {
-        internalType: "bytes32",
-        name: "_node",
-        type: "bytes32",
+        internalType: "address[]",
+        name: "clients",
+        type: "address[]",
       },
     ],
-    name: "name",
+    name: "nameOf",
     outputs: [
       {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_addr",
-        type: "address",
-      },
-    ],
-    name: "node",
-    outputs: [
-      {
-        internalType: "bytes32",
-        name: "",
-        type: "bytes32",
+        internalType: "string[]",
+        name: "names",
+        type: "string[]",
       },
     ],
     stateMutability: "view",
@@ -212,30 +155,6 @@ const _abi = [
         internalType: "uint256[]",
         name: "amounts",
         type: "uint256[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "_node",
-        type: "bytes32",
-      },
-      {
-        internalType: "string",
-        name: "_key",
-        type: "string",
-      },
-    ],
-    name: "text",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
       },
     ],
     stateMutability: "view",

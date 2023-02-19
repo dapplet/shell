@@ -6,40 +6,6 @@ import { ViewerFacet, ViewerFacet__factory } from '../types'
 const ViewerFacetInterface = new utils.Interface(ViewerFacet__factory.abi)
 
 
-export const useViewerFacet_addr = (
-  contractAddress: Falsy | string,
-  args: Falsy | Params<ViewerFacet, 'addr'>,
-  queryParams: QueryParams = {}
-) => {
-  return useCall<ViewerFacet, 'addr'>(
-    contractAddress
-      && args
-      && {
-        contract: new Contract(contractAddress, ViewerFacetInterface) as ViewerFacet,
-        method: 'addr',
-        args
-      }, queryParams
-  )
-}
-
-
-export const useViewerFacet_contentHash = (
-  contractAddress: Falsy | string,
-  args: Falsy | Params<ViewerFacet, 'contentHash'>,
-  queryParams: QueryParams = {}
-) => {
-  return useCall<ViewerFacet, 'contentHash'>(
-    contractAddress
-      && args
-      && {
-        contract: new Contract(contractAddress, ViewerFacetInterface) as ViewerFacet,
-        method: 'contentHash',
-        args
-      }, queryParams
-  )
-}
-
-
 export const useViewerFacet_isPkg = (
   contractAddress: Falsy | string,
   args: Falsy | Params<ViewerFacet, 'isPkg'>,
@@ -74,34 +40,17 @@ export const useViewerFacet_metadataOf = (
 }
 
 
-export const useViewerFacet_name = (
+export const useViewerFacet_nameOf = (
   contractAddress: Falsy | string,
-  args: Falsy | Params<ViewerFacet, 'name'>,
+  args: Falsy | Params<ViewerFacet, 'nameOf'>,
   queryParams: QueryParams = {}
 ) => {
-  return useCall<ViewerFacet, 'name'>(
+  return useCall<ViewerFacet, 'nameOf'>(
     contractAddress
       && args
       && {
         contract: new Contract(contractAddress, ViewerFacetInterface) as ViewerFacet,
-        method: 'name',
-        args
-      }, queryParams
-  )
-}
-
-
-export const useViewerFacet_node = (
-  contractAddress: Falsy | string,
-  args: Falsy | Params<ViewerFacet, 'node'>,
-  queryParams: QueryParams = {}
-) => {
-  return useCall<ViewerFacet, 'node'>(
-    contractAddress
-      && args
-      && {
-        contract: new Contract(contractAddress, ViewerFacetInterface) as ViewerFacet,
-        method: 'node',
+        method: 'nameOf',
         args
       }, queryParams
   )
@@ -176,33 +125,12 @@ export const useViewerFacet_sentStakeOf = (
 }
 
 
-export const useViewerFacet_text = (
-  contractAddress: Falsy | string,
-  args: Falsy | Params<ViewerFacet, 'text'>,
-  queryParams: QueryParams = {}
-) => {
-  return useCall<ViewerFacet, 'text'>(
-    contractAddress
-      && args
-      && {
-        contract: new Contract(contractAddress, ViewerFacetInterface) as ViewerFacet,
-        method: 'text',
-        args
-      }, queryParams
-  )
-}
-
-
 export const useViewerFacet = {
-  addr: useViewerFacet_addr,
-  contentHash: useViewerFacet_contentHash,
   isPkg: useViewerFacet_isPkg,
   metadataOf: useViewerFacet_metadataOf,
-  name: useViewerFacet_name,
-  node: useViewerFacet_node,
+  nameOf: useViewerFacet_nameOf,
   ownedBy: useViewerFacet_ownedBy,
   ownerOf: useViewerFacet_ownerOf,
   receivedStakeOf: useViewerFacet_receivedStakeOf,
-  sentStakeOf: useViewerFacet_sentStakeOf,
-  text: useViewerFacet_text
+  sentStakeOf: useViewerFacet_sentStakeOf
 }

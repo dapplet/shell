@@ -62,11 +62,6 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "EnumerableMap__NonExistentKey",
-    type: "error",
-  },
-  {
-    inputs: [],
     name: "Factory__FailedDeployment",
     type: "error",
   },

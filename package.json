@@ -1,7 +1,7 @@
 {
   "name": "dapp-shell",
   "author": "Dapplet",
-  "version": "1.1.0",
+  "version": "1.1.4",
   "description": "AppShell for a dapp on the Dapplet network",
   "keywords": [
     "piral"
@@ -28,7 +28,7 @@
   "dependencies": {
     "@shoelace-style/shoelace": "^2.0.0",
     "@usedapp/core": "^1.2.2",
-    "ethers": "^5.7.0",
+    "ethers": "^5.7.2",
     "piral-core": "^0.15.4",
     "piral-dashboard": "^0.15.4",
     "piral-notifications": "^0.15.4",

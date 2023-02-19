@@ -22,42 +22,26 @@ import type {
 
 export interface ViewerFacetInterface extends utils.Interface {
   functions: {
-    "addr(bytes32)": FunctionFragment;
-    "contentHash(bytes32)": FunctionFragment;
     "isPkg(address)": FunctionFragment;
     "metadataOf(address[])": FunctionFragment;
-    "name(bytes32)": FunctionFragment;
-    "node(address)": FunctionFragment;
+    "nameOf(address[])": FunctionFragment;
     "ownedBy(address)": FunctionFragment;
     "ownerOf(address)": FunctionFragment;
     "receivedStakeOf(address)": FunctionFragment;
     "sentStakeOf(address)": FunctionFragment;
-    "text(bytes32,string)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "addr"
-      | "contentHash"
       | "isPkg"
       | "metadataOf"
-      | "name"
-      | "node"
+      | "nameOf"
       | "ownedBy"
       | "ownerOf"
       | "receivedStakeOf"
       | "sentStakeOf"
-      | "text"
   ): FunctionFragment;
 
-  encodeFunctionData(
-    functionFragment: "addr",
-    values: [PromiseOrValue<BytesLike>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "contentHash",
-    values: [PromiseOrValue<BytesLike>]
-  ): string;
   encodeFunctionData(
     functionFragment: "isPkg",
     values: [PromiseOrValue<string>]
@@ -67,12 +51,8 @@ export interface ViewerFacetInterface extends utils.Interface {
     values: [PromiseOrValue<string>[]]
   ): string;
   encodeFunctionData(
-    functionFragment: "name",
-    values: [PromiseOrValue<BytesLike>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "node",
-    values: [PromiseOrValue<string>]
+    functionFragment: "nameOf",
+    values: [PromiseOrValue<string>[]]
   ): string;
   encodeFunctionData(
     functionFragment: "ownedBy",
@@ -90,20 +70,10 @@ export interface ViewerFacetInterface extends utils.Interface {
     functionFragment: "sentStakeOf",
     values: [PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(
-    functionFragment: "text",
-    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
-  ): string;
 
-  decodeFunctionResult(functionFragment: "addr", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "contentHash",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "isPkg", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "metadataOf", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "node", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "nameOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownedBy", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(
@@ -114,7 +84,6 @@ export interface ViewerFacetInterface extends utils.Interface {
     functionFragment: "sentStakeOf",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "text", data: BytesLike): Result;
 
   events: {};
 }
@@ -146,16 +115,6 @@ export interface ViewerFacet extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    addr(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    contentHash(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
     isPkg(
       pkg: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -166,15 +125,10 @@ export interface ViewerFacet extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string[]] & { metadata: string[] }>;
 
-    name(
-      _node: PromiseOrValue<BytesLike>,
+    nameOf(
+      clients: PromiseOrValue<string>[],
       overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    node(
-      _addr: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
+    ): Promise<[string[]] & { names: string[] }>;
 
     ownedBy(
       account: PromiseOrValue<string>,
@@ -199,23 +153,7 @@ export interface ViewerFacet extends BaseContract {
     ): Promise<
       [string[], BigNumber[]] & { pkgs: string[]; amounts: BigNumber[] }
     >;
-
-    text(
-      _node: PromiseOrValue<BytesLike>,
-      _key: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
   };
-
-  addr(
-    _node: PromiseOrValue<BytesLike>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  contentHash(
-    _node: PromiseOrValue<BytesLike>,
-    overrides?: CallOverrides
-  ): Promise<string>;
 
   isPkg(
     pkg: PromiseOrValue<string>,
@@ -227,15 +165,10 @@ export interface ViewerFacet extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string[]>;
 
-  name(
-    _node: PromiseOrValue<BytesLike>,
+  nameOf(
+    clients: PromiseOrValue<string>[],
     overrides?: CallOverrides
-  ): Promise<string>;
-
-  node(
-    _addr: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<string>;
+  ): Promise<string[]>;
 
   ownedBy(
     account: PromiseOrValue<string>,
@@ -261,23 +194,7 @@ export interface ViewerFacet extends BaseContract {
     [string[], BigNumber[]] & { pkgs: string[]; amounts: BigNumber[] }
   >;
 
-  text(
-    _node: PromiseOrValue<BytesLike>,
-    _key: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
   callStatic: {
-    addr(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    contentHash(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
     isPkg(
       pkg: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -288,15 +205,10 @@ export interface ViewerFacet extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string[]>;
 
-    name(
-      _node: PromiseOrValue<BytesLike>,
+    nameOf(
+      clients: PromiseOrValue<string>[],
       overrides?: CallOverrides
-    ): Promise<string>;
-
-    node(
-      _addr: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string[]>;
 
     ownedBy(
       account: PromiseOrValue<string>,
@@ -321,27 +233,11 @@ export interface ViewerFacet extends BaseContract {
     ): Promise<
       [string[], BigNumber[]] & { pkgs: string[]; amounts: BigNumber[] }
     >;
-
-    text(
-      _node: PromiseOrValue<BytesLike>,
-      _key: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<string>;
   };
 
   filters: {};
 
   estimateGas: {
-    addr(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    contentHash(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     isPkg(
       pkg: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -352,13 +248,8 @@ export interface ViewerFacet extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    name(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    node(
-      _addr: PromiseOrValue<string>,
+    nameOf(
+      clients: PromiseOrValue<string>[],
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -379,27 +270,11 @@ export interface ViewerFacet extends BaseContract {
 
     sentStakeOf(
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    text(
-      _node: PromiseOrValue<BytesLike>,
-      _key: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    addr(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    contentHash(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     isPkg(
       pkg: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -410,13 +285,8 @@ export interface ViewerFacet extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    name(
-      _node: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    node(
-      _addr: PromiseOrValue<string>,
+    nameOf(
+      clients: PromiseOrValue<string>[],
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -437,12 +307,6 @@ export interface ViewerFacet extends BaseContract {
 
     sentStakeOf(
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    text(
-      _node: PromiseOrValue<BytesLike>,
-      _key: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };

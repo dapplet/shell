@@ -27,11 +27,6 @@ h6 {
   font-weight: 700;
 }
 
-#app-layout {
-  display: grid;
-  width: 100%;
-}
-
 li {
   list-style: circle;
   list-style-position: inside;

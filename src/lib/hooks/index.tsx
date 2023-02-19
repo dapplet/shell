@@ -1,19 +1,14 @@
-import { namehash } from '@ethersproject/hash';
-import { useLayoutEffect, useState } from 'react';
-import { rootName, useDeployments } from '../../contracts';
-import { useViewerFacet } from '../../contracts/hooks/ViewerFacet';
-import { getWindowDimensions } from '../actions';
+import { useLayoutEffect, useMemo, useState } from 'react';
+import { getDiamond, getWindowDimensions } from '../actions';
 
-export function useClient() {
-  const diamond = useDeployments('Diamond');
-  console.log('diamond', diamond.address);
-  const name = window.location.hostname.split('.')[0];
-  console.log('name', name);
-  const node = namehash(`${name}.${rootName}`);
-  console.log('node', node);
-  const addr = useViewerFacet.addr(diamond?.address, [node])?.value?.[0];
-  console.log('addr', addr);
-  return addr;
+export function useDiamond() {
+  const [diamond, setDiamond] = useState(getDiamond());
+
+  useMemo(() => {
+    setDiamond(getDiamond());
+  }, []);
+
+  return diamond;
 }
 
 export function useWindowDimensions() {

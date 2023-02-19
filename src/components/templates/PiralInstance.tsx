@@ -1,7 +1,4 @@
-import type {
-  FallbackProvider,
-  JsonRpcProvider,
-} from '@ethersproject/providers';
+import { DAppProvider } from '@usedapp/core';
 import {
   ComponentsState,
   ErrorComponentsState,
@@ -11,11 +8,12 @@ import {
 } from 'piral-core';
 import { Dashboard, createDashboardApi } from 'piral-dashboard';
 import { Notifications, createNotificationsApi } from 'piral-notifications';
-import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { SlAlert, SlCard, SlIcon } from '../../design/shoelace';
 import { getPilets } from '../../lib/actions';
+import { config } from '../../lib/constants';
 import Header from '../organisms/Header';
+import ThemeProvider from './ThemeProvider';
 
 export const errors: Partial<ErrorComponentsState> = {
   not_found: () => (
@@ -68,13 +66,16 @@ export const layout: Partial<ComponentsState> = {
   ),
   // TODO: change from Header to Footer? -- issue is notifications get in the way of header items
   Layout: ({ children }) => (
-    <div>
-      <Header />
-      <Notifications />
-      <div id="body">{children}</div>
-    </div>
+    <DAppProvider config={config}>
+      <ThemeProvider>
+        <div id="main">
+          <Header />
+          <Notifications />
+          <div id="body">{children}</div>
+        </div>
+      </ThemeProvider>
+    </DAppProvider>
   ),
-  // TODO: Draggable tiles
   DashboardTile: ({ columns, rows, children }) => (
     <SlCard className={`tile cols-${columns} rows-${rows}`}>{children}</SlCard>
   ),
@@ -101,42 +102,28 @@ export const layout: Partial<ComponentsState> = {
   ),
 };
 
-export interface InstanceProps {
-  provider: JsonRpcProvider | FallbackProvider;
-  diamond: string;
-}
-
-export const PiralInstance = memo(({ provider, diamond }: InstanceProps) => {
+export const PiralInstance = () => {
   // register base menu item
 
   const instance = createInstance({
-    id: diamond,
     state: {
       components: layout,
       errorComponents: errors,
       routes: {
         '/': Dashboard,
       },
-      data: {
-        'diamond-address': {
-          expires: -1,
-          owner: 'root',
-          target: 'memory',
-          value: diamond,
-        },
-      },
     },
     // actions: {},
     plugins: [createDashboardApi(), createNotificationsApi()],
     async: true,
     async requestPilets() {
-      const pilets = await getPilets(diamond, provider);
+      const pilets = await getPilets();
       console.log('pilets', pilets);
       return Promise.resolve(pilets);
     },
   });
 
   return <Piral instance={instance} />;
-});
+};
 
 export default PiralInstance;
