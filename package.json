@@ -1,12 +1,11 @@
 {
-  "name": "dapp-shell",
+  "name": "@dapplet/shell",
   "author": "Dapplet",
-  "version": "1.1.4",
+  "version": "1.0.0",
   "description": "AppShell for a dapp on the Dapplet network",
   "keywords": [
     "piral"
   ],
-  "private": true,
   "license": "GPL-3.0",
   "engines": {
     "node": ">=16.0.0",
@@ -82,5 +81,8 @@
     "typechain": "^8.1.0",
     "typescript": "latest"
   },
-  "repository": "https://github.com/dapplet/shell.git"
+  "repository": "https://github.com/dapplet/shell.git",
+  "publishConfig": {
+    "access": "public"
+  }
 }
