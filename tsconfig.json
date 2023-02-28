@@ -18,7 +18,7 @@
     "typeRoots": ["./node_modules/@types", "src/lib/types"],
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./lib",
     "importHelpers": true
   },
   "ts-node": {

@@ -1,7 +1,7 @@
 {
   "name": "@dapplet/shell",
   "author": "Dapplet",
-  "version": "1.2.0",
+  "version": "1.2.4",
   "description": "AppShell for a dapp on the Dapplet network",
   "keywords": [
     "piral"
