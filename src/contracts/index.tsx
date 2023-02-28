@@ -1,22 +1,15 @@
 import { useEthers } from '@usedapp/core';
-import { config } from '../lib/constants';
-import deployments from './deployments.json';
+import * as deployments from '../contracts/deployments.json'; //weird behavior
+import { config } from '../lib/config';
+import type { IDeployments } from '../lib/types';
 
 export const rootName = 'dapptest.eth';
 
-export interface IDeployments {
-  [key: number]: {
-    [key: string]: {
-      address: string;
-      abi?: any;
-    };
-  };
-}
-
 export function deployment(contractName: string, chainId: number) {
-  return (deployments as IDeployments)[chainId as keyof IDeployments]?.[
-    contractName
-  ];
+  const contract = (deployments as IDeployments)[
+    chainId as keyof IDeployments
+  ]?.[contractName];
+  return contract;
 }
 
 //useInterface -- fetch from typechain files
