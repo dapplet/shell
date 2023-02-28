@@ -11,7 +11,6 @@ import { Notifications, createNotificationsApi } from 'piral-notifications';
 import { Link } from 'react-router-dom';
 import { SlAlert, SlCard, SlIcon } from '../../design/shoelace';
 import { getPilets } from '../../lib/actions';
-import { config } from '../../lib/constants';
 import Header from '../organisms/Header';
 import ThemeProvider from './ThemeProvider';
 
@@ -66,7 +65,13 @@ export const layout: Partial<ComponentsState> = {
   ),
   // TODO: change from Header to Footer? -- issue is notifications get in the way of header items
   Layout: ({ children }) => (
-    <DAppProvider config={config}>
+    <DAppProvider
+      config={
+        process.env.NODE_ENV === 'production'
+          ? require('../../lib/constants/production')
+          : require('../../lib/constants/development')
+      }
+    >
       <ThemeProvider>
         <div id="main">
           <Header />

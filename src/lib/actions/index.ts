@@ -10,7 +10,7 @@ import {
   ConnectorFacet__factory,
   ViewerFacet__factory,
 } from '../../contracts/types';
-import { config, gateways } from '../constants';
+import { gateways } from '../constants';
 
 export async function fetchFirstAvailable(cid: string, file?: string) {
   for (const schema of gateways) {
@@ -37,6 +37,10 @@ export async function getPilets() {
   // const provider = new ethers.providers.JsonRpcProvider(
   //   (config.readOnlyUrls)[`${config.readOnlyChainId as number}`]
 
+  const config =
+    process.env.NODE_ENV === 'production'
+      ? require('../constants/production')
+      : require('../constants/development');
   const url = (config.readOnlyUrls as NodeUrls)[
     config.readOnlyChainId as keyof NodeUrls
   ] as string;
@@ -46,7 +50,7 @@ export async function getPilets() {
   const chainId = await provider.getNetwork().then((res) => {
     return res.chainId;
   });
-  const client = await getDiamond();
+  const client = getDiamond();
 
   console.log('chainId', chainId);
 
