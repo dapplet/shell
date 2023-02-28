@@ -6,3 +6,8 @@ export const gateways: urlParams[] = [
     suffix: '',
   },
 ];
+
+export const config =
+  process.env.NODE_ENV === 'production'
+    ? require('./production')
+    : require('./development');
