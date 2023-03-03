@@ -1,7 +1,7 @@
 {
   "name": "@dapplet/shell",
   "author": "Dapplet",
-  "version": "1.2.4",
+  "version": "1.2.8",
   "description": "AppShell for a dapp on the Dapplet network",
   "keywords": [
     "piral"
@@ -49,7 +49,7 @@
     "gen": "rm -rf ./src/contracts/hooks && rm -rf ./src/contracts/types && yarn generate:typechain && yarn generate:usedapp",
     "generate:typechain": "typechain --target=ethers-v5  ./src/contracts/metadata/**/*.json --out-dir ./src/contracts/types/",
     "generate:usedapp": "USEDAPP_OUT_DIR=./src/contracts/hooks USEDAPP_TYPES_DIR=./src/contracts/types yarn usedapp-generate-hooks",
-    "push": "ts-node scripts/src/index.ts"
+    "push": "yarn build && yarn publish ./dist/emulator/*.tgz"
   },
   "app": "./src/index.html",
   "devDependencies": {
