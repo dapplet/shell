@@ -151,3 +151,10 @@ export function getWindowDimensions() {
     height,
   };
 }
+
+//deploy new system (for localhost only)
+
+// import contracts as a node package @dapplet/contracts
+
+// insert into getPilets()
+// if !(NODE_ENV === 'production') && any address under deployments[31337] is invalid, run deploySystem()
