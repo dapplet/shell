@@ -105,3 +105,11 @@ a.navbar-brand {
   padding: 0.5em;
   cursor: pointer;
 }
+
+.header-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 12em;
+  word-wrap: none;
+  white-space: nowrap;
+}

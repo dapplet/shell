@@ -1,4 +1,4 @@
-import { SlIcon, SlIconButton, SlSwitch } from '../../design/shoelace';
+import { SlIcon, SlSwitch } from '../../design/shoelace';
 import { useDiamond } from '../../lib/hooks';
 import { useDappNameByAddress } from '../../lib/shared';
 import { useTheme } from '../../lib/stores';
@@ -12,15 +12,10 @@ function Header() {
   const name = useDappNameByAddress(address);
 
   return (
-    <>
+    <div className="w-full">
       <div id="header">
-        <div className="flex items-center flex-row">
-          <h1>{name}</h1>
-          <a className="footer-item" href="/">
-            <SlIconButton name="box-arrow-up-right" />
-          </a>
-        </div>
-        <div className="flex items-center gap-2">
+        <h1 className="header-title">{name}</h1>
+        <div className="flex items-center gap-2 flex-">
           <SlSwitch
             className="menu-switch"
             checked={theme === 'dark'}
@@ -30,7 +25,7 @@ function Header() {
           <Wallet />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -35,10 +35,6 @@ export async function fetchFirstAvailable(cid: string, file?: string) {
 }
 
 export async function getPilets() {
-  // const provider = new ethers.providers.JsonRpcProvider(
-  //   (config.readOnlyUrls)[`${config.readOnlyChainId as number}`]
-  console.log('asdf config', config.multicallAddresses);
-
   const url = (config.readOnlyUrls as NodeUrls)[
     config.readOnlyChainId as keyof NodeUrls
   ] as string;
