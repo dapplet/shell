@@ -54,99 +54,99 @@
       "address": "0xc31968D1cbC247Fc0f3b9157909d72A1339Afa75"
     },
     "Installer": {
-      "address": "0x9385556B571ab92bf6dC9a0DbD75429Dd4d56F91"
+      "address": "0x1f9c84B161b2c7FFB540BC5354543108cCE37df1"
     },
     "Diamond": {
-      "address": "0x8B190573374637f144AC8D37375d97fd84cBD3a0"
+      "address": "0x8659DF1C638CDA8E475CD3C6481730C2b4f85873"
     },
     "DiamondLoupeFacet": {
-      "address": "0x7B4f352Cd40114f12e82fC675b5BA8C7582FC513"
+      "address": "0xF94AB55a20B32AC37c3A105f12dB535986697945"
     },
     "ERC165Facet": {
-      "address": "0x82EdA215Fa92B45a3a76837C65Ab862b6C7564a8"
+      "address": "0xF62eEc897fa5ef36a957702AA4a45B58fE8Fe312"
     },
     "OwnershipFacet": {
-      "address": "0xcE0066b1008237625dDDBE4a751827de037E53D2"
+      "address": "0xBCF063A9eB18bc3C6eB005791C61801B7cB16fe4"
     },
     "AdminFacet": {
-      "address": "0x87006e75a5B6bE9D1bbF61AC8Cd84f05D9140589"
+      "address": "0x364C7188028348566E38D762f6095741c49f492B"
     },
     "ClientRegistry": {
-      "address": "0x51C65cd0Cdb1A8A8b79dfc2eE965B1bA0bb8fc89"
+      "address": "0x5147c5C1Cb5b5D3f56186C37a4bcFBb3Cd0bD5A7"
     },
     "ConnectorFacet": {
-      "address": "0x8fC8CFB7f7362E44E472c690A6e025B80E406458"
+      "address": "0xF2cb3cfA36Bfb95E0FD855C1b41Ab19c517FcDB9"
     },
     "DiamondCutFacet": {
-      "address": "0xC7143d5bA86553C06f5730c8dC9f8187a621A8D4"
+      "address": "0xC3549920b94a795D75E6C003944943D552C46F97"
     },
     "ViewerFacet": {
-      "address": "0xc9952Fc93Fa9bE383ccB39008c786b9f94eAc95d"
+      "address": "0x205Cfc23ef26922E116135500abb4B12Ab6d4668"
     },
     "WETHFacet": {
       "address": "0xcA0a523c01675BF9F516EF1c00916f995ae736B3"
     },
     "ClientInit": {
-      "address": "0xD5724171C2b7f0AA717a324626050BD05767e2C6"
+      "address": "0xD69BC314bdaa329EB18F36E4897D96A3A48C3eeF"
     },
     "SysUpgradeInit": {
-      "address": "0x70eE76691Bdd9696552AF8d4fd634b3cF79DD529"
+      "address": "0x6712008CCD96751d586FdBa0DEf5495E0E22D904"
     },
     "SystemInit": {
-      "address": "0xDde063eBe8E85D666AD99f731B4Dbf8C98F29708"
+      "address": "0xbB57FE325e769DEDB1236525a91cDEd842143fA7"
     },
     "Multicall2": {
-      "address": "0xAdE429ba898c34722e722415D722A70a297cE3a2"
+      "address": "0xD185B4846E5fd5419fD4D077dc636084BEfC51C0"
     },
     "StakingFacet": {
-      "address": "0x359570B3a0437805D0a71457D61AD26a28cAC9A2"
+      "address": "0xAB8Eb9F37bD460dF99b11767aa843a8F27FB7A6e"
     }
   },
   "11155111": {
     "Installer": {
-      "address": "0x0A3a89D86C1aF9A5D2814E6d167e625D1a188777"
+      "address": "0xF2F9a661b711724465aB0b35AaF51fb7DE47bE95"
     },
     "Diamond": {
-      "address": "0x1F6F60E29EA371d953697eaAbB829DF8ACb3A76E"
+      "address": "0x03F3F0705f39DA17ba92D15850ec9865D708BAcc"
     },
     "DiamondLoupeFacet": {
-      "address": "0xB8ce3be5c9474Ba68A8bFC5AFe118e3EB602212C"
+      "address": "0x9C69C3250EF067Febdb24647FcbEa3C815b58e3E"
     },
     "ERC165Facet": {
-      "address": "0x7B042F566e0dad2FD7ed191F1dfc13B20b6835bF"
+      "address": "0x8E8f87cB45e76145B130C7082C43Be3EA4aA315c"
     },
     "OwnershipFacet": {
-      "address": "0xDcf8733919DD978Fcb16128eF31D1eCE742a837A"
+      "address": "0xc4cfeAF93C5bB6F5d69BA26e1BA88e7312aA5D14"
     },
     "AdminFacet": {
-      "address": "0x51Ee77D21c1697890431BBC98306EFa777e6FDeB"
+      "address": "0x6422F3bF9cf6a135FeCEf4747F1864fEd1b4Ba0D"
     },
     "ClientRegistry": {
-      "address": "0x8839d163779F2cdb7EBfcaeCa5aB3331315d46aE"
+      "address": "0xcf15DcAb1e50b98D35Dbf126E55782A0d50A707c"
     },
     "ConnectorFacet": {
-      "address": "0xa7dF5c0d23B91B1E1edc10399Be961Dde83693C3"
+      "address": "0x08F30Bd8C322606CC51E9A5318E61e6F19CC3eE6"
     },
     "DiamondCutFacet": {
-      "address": "0x669cCBf76113f29ee424Be2aef53635967376F6a"
+      "address": "0xEA621Fa045F7CB59b73709f272FA34f345081E6A"
     },
     "StakingFacet": {
-      "address": "0xA261E91566D50dB0b55b15C0179ec9B64D0Eef3a"
+      "address": "0xFC95e5e6d73977eC79979d6bCC7f34A23cbe12F3"
     },
     "ViewerFacet": {
-      "address": "0x5a48b618E99afD0a46067fAE4a47901F923e30E0"
+      "address": "0xF8C26Bf13d785F9F2cc788C586D7bcc9f324E18E"
     },
     "ClientInit": {
-      "address": "0xBe684f8eda4dEa1bD537d91B66506f25CBBcfB8B"
+      "address": "0xfc7E397D24c6a8d0F36a9EDA92179Dd366F2594A"
     },
     "SysUpgradeInit": {
-      "address": "0x7815723545Cc4a13fc901d38151e7FD57Ac937eF"
+      "address": "0x0a10D2126C371b1f1f4E8B75A675D58ba928312B"
     },
     "SystemInit": {
-      "address": "0x4bCBDC6d83fd37DE73a942C506B5074219162970"
+      "address": "0x6FDd5169A0f4EFA35B815431B7E4524E6902fec8"
     },
     "Multicall2": {
-      "address": "0x125c8681886d191E3e2b7aB1eeFe088E2D96B55e"
+      "address": "0xBB547d5eD754Cc694D8B15D0C3a13ee167844472"
     }
   }
 }
