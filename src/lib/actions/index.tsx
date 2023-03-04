@@ -101,7 +101,6 @@ export function parseInstalls(logs: any[], schema: 'args' | 'data') {
         (upgrade) => upgrade[schema]?.install === false
       );
       return uninstalls.every((uninstall) => {
-        console.log('uninstall', uninstall);
         return uninstall.blockNumber < upgrade.blockNumber;
       });
     })
