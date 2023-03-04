@@ -1,6 +1,4 @@
 node_modules
 yarn.lock
 # .env
-dist/*.js
-dist/*.js.map
-dist/*.json
+dist
